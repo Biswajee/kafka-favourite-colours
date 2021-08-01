@@ -57,7 +57,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>>app.netlify.biswajit.colourCount.ColourStream</mainClass>
+                            <mainClass>>app.netlify.biswajit.colour_count.ColourStream</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

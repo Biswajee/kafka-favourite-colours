@@ -1,3 +1,5 @@
+package app.netlify.biswajit.colour_count;
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.utils.Bytes;
@@ -12,15 +14,14 @@ import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.state.KeyValueStore;
 
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Properties;
 
 public class ColourStream {
-    public static void main() {
+    public static void main(String[] args) {
         /*
-         * The program takes in a user-id, name and colour
-         * The user-id never changes but the name and colour can be modified.
-         * Compute the final count of each of the favourite colours.
+         * The program takes in a user-name and colour separated by a comma.
+         * The users can update their favourite colours.
+         * The final count of each of the favourite colours will be displayed in the output topic.
          */
 
         Properties config = new Properties();
@@ -40,7 +41,7 @@ public class ColourStream {
                 // Select a key that will be the user-id (lowercase for homogeneity)
                 .selectKey((key, value) -> value.split(",")[0].toLowerCase())
                 // Get the colour from the values (lowercase for homogeneity)
-                .mapValues(values -> values.split(" ")[1].toLowerCase())
+                .mapValues(values -> values.split(",")[1].toLowerCase())
                 // Filter the undesired colours
                 .filter((user, colour) -> Arrays.asList("green", "blue", "red").contains(colour));
 
