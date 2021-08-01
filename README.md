@@ -1,6 +1,6 @@
 # Kafka application: Favourite colours
 
-This streams application takes in favourite colours and usernames as input
+The application takes in the favourite colour and username as input
 and displays the frequency of the favourite colours currently in the stream.
 
 ## Prerequisites
@@ -43,8 +43,10 @@ bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-f
 bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic colour-count-output --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 ```
 
-+ Start the kafka producer with input-topic:
++ Start the kafka producer with the input-topic:
 
 ```shell
 bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic colour-count-input
 ```
+
+> Add inputs to the input-topic and monitor the output from the output topic.
